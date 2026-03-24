@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Ashu Shopping · Habesha Wear Collection</title>
+    <!-- Google Fonts & Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: #fefaf5;
+            color: #2c2418;
+            overflow-x: hidden;
+        }
+
+        /* header */
+        .header {
+            background: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: baseline;
+            gap: 6px;
+            cursor: default;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #8b3c1c, #c76e2e);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.3px;
+        }
+
+        .logo-dot {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #c76e2e;
+        }
+
+        .tagline {
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: #9b7a5c;
+            margin-left: 0.5rem;
+            display: inline-block;
+        }
+
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            background: #fef0e6;
+            padding: 10px 14px;
+            border-radius: 60px;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cart-icon:hover {
+            background: #fbe5d4;
+            transform: scale(1.02);
+        }
+
+        .cart-icon i {
+            font-size: 1.5rem;
+            color: #a65228;
+        }
+
+        .cart-count {
+            background: #c76e2e;
+            color: white;
+            font-weight: bold;
+            font-size: 0.75rem;
+            min-width: 22px;
+            height: 22px;
+            border-radius: 40px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 6px;
+        }
+
+        /* container */
+        .container {
+            max-width: 1300px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        /* hero */
+        .hero {
+            background: linear-gradient(110deg, #fff3e8 0%, #ffffff 100%);
+            border-radius: 2rem;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid #fae3cf;
+        }
+
+        .hero-text h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(145deg, #a35127, #d48a4b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero-text p {
+            color: #7c5d42;
+            margin-top: 0.5rem;
+        }
+
+        .hero-badge {
+            background: #e9d9cd;
+            padding: 0.5rem 1rem;
+            border-radius: 60px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #a4502b;
+        }
+
+        .section-title {
+            font-size: 1.7rem;
+            font-weight: 700;
+            margin-bottom: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #4a2e1e;
+        }
+
+        .section-title i {
+            color: #c76e2e;
+        }
+
+        /* product grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            transition: all 0.25s ease;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.05);
+            border: 1px solid #f0e3d8;
+        }
+
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 28px -12px rgba(0, 0, 0, 0.15);
+            border-color: #dbbc9f;
+        }
+
+        .product-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: #f7ede4;
+        }
+
+        .product-info {
+            padding: 1.2rem 1rem 1.3rem;
+        }
+
+        .product-name {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #3f2a1b;
+        }
+
+        .product-price {
+            font-weight: 700;
+            color: #c76e2e;
+            font-size: 1.25rem;
+            margin: 0.5rem 0 1rem;
+        }
+
+        .add-btn {
+            background: #8b3c1c;
+            border: none;
+            color: white;
+            padding: 0.7rem 1rem;
+            border-radius: 2rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .add-btn:hover {
+            background: #c76e2e;
+        }
+
+        /* contact section */
+        .contact-section {
+            background: #ffffff;
+            border-radius: 2rem;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.03);
+            border: 1px solid #f0e0d2;
+        }
+
+        .contact-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #4f321d;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .contact-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: space-between;
+        }
+
+        .contact-info {
+            flex: 2;
+            min-width: 240px;
+        }
+
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 1.2rem;
+            font-size: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-detail i {
+            width: 32px;
+            font-size: 1.3rem;
+            color: #c76e2e;
+        }
+
+        .contact-detail a, .contact-detail span {
+            color: #2c2418;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .contact-detail a:hover {
+            color: #c76e2e;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.2rem;
+            margin-top: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .social-icon {
+            background: #f7ede4;
+            width: 44px;
+            height: 44px;
+            border-radius: 60px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #7b4a2c;
+            transition: 0.2s;
+            text-decoration: none;
+        }
+
+        .social-icon:hover {
+            background: #c76e2e;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .address-box {
+            flex: 1;
+            background: #fef6ef;
+            padding: 1.2rem;
+            border-radius: 1.5rem;
+            border-left: 5px solid #c76e2e;
+        }
+
+        .address-box i {
+            color: #c76e2e;
+            margin-right: 10px;
+        }
+
+        /* cart drawer (unchanged but restyled) */
+        .cart-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(3px);
+            visibility: hidden;
+            opacity: 0;
+            transition: 0.25s;
+            z-index: 200;
+        }
+        .cart-overlay.open {
+            visibility: visible;
+            opacity: 1;
+        }
+        .cart-drawer {
+            position: fixed;
+            top: 0;
+            right: -420px;
+            width: 100%;
+            max-width: 420px;
+            height: 100%;
+            background: white;
+            box-shadow: -8px 0 30px rgba(0,0,0,0.1);
+            z-index: 201;
+            transition: right 0.3s cubic-bezier(0.2,0.9,0.4,1.1);
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+        .cart-drawer.open {
+            right: 0;
+        }
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            padding: 1.5rem 1.5rem 0.8rem;
+            border-bottom: 1px solid #f3e4d8;
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 1.6rem;
+            cursor: pointer;
+            color: #b87a52;
+        }
+        .cart-items-container {
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+        }
+        .cart-item {
+            display: flex;
+            gap: 12px;
+            background: #fffaf5;
+            border-radius: 1rem;
+            padding: 0.9rem;
+            margin-bottom: 0.9rem;
+            border: 1px solid #f1e2d6;
+            align-items: center;
+        }
+        .cart-item-img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+        .cart-item-details {
+            flex: 1;
+        }
+        .cart-item-name {
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+        .cart-item-price {
+            font-size: 0.8rem;
+            color: #c76e2e;
+            font-weight: 600;
+        }
+        .cart-item-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 6px;
+        }
+        .qty-btn {
+            background: #f1e4da;
+            border: none;
+            width: 28px;
+            height: 28px;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .cart-footer {
+            border-top: 1px solid #f0e2d6;
+            padding: 1.2rem 1.5rem 1.8rem;
+        }
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 800;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+        .checkout-btn, .clear-cart-btn {
+            width: 100%;
+            padding: 0.9rem;
+            border-radius: 60px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .checkout-btn {
+            background: #8b3c1c;
+            color: white;
+        }
+        .checkout-btn:hover {
+            background: #c76e2e;
+        }
+        .clear-cart-btn {
+            background: #fef0e6;
+            color: #a65228;
+        }
+        .empty-cart-msg {
+            text-align: center;
+            padding: 2rem;
+            color: #b48b6b;
+        }
+        footer {
+            background: #2b211a;
+            color: #dfcbbc;
+            text-align: center;
+            padding: 1.8rem;
+            font-size: 0.85rem;
+            margin-top: 2rem;
+        }
+        @media (max-width: 640px) {
+            .header, .container {
+                padding: 1rem;
+            }
+            .contact-grid {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <div class="logo-area">
+        <span class="logo">ashu shopping</span>
+        <span class="logo-dot">.com</span>
+        <span class="tagline">🇪🇹 habesha wear & tradition</span>
+    </div>
+    <div class="cart-icon" id="cartIconBtn">
+        <i class="fas fa-shopping-bag"></i>
+        <span class="cart-count" id="cartCountBadge">0</span>
+    </div>
+</header>
+
+<main class="container">
+    <div class="hero">
+        <div class="hero-text">
+            <h1>✨ የሐበሻ ውበት ✨<br>Habesha Elegance</h1>
+            <p>handcrafted traditional wear · timeless style</p>
+        </div>
+        <div class="hero-badge">
+            <i class="fas fa-map-marker-alt"></i> Addis Ababa, Ethiopia · fast delivery
+        </div>
+    </div>
+
+    <div class="section-title">
+        <i class="fas fa-tshirt"></i>
+        <span>ከእኛ የተመረጡ ልብሶች | Our Habesha Collection</span>
+    </div>
+    <div class="product-grid" id="productGrid"></div>
+
+    <!-- CONTACT SECTION (Email, phone, social, address) -->
+    <div class="contact-section" id="contact">
+        <div class="contact-title">
+            <i class="fas fa-address-card"></i>
+            <span>ግንኙነት | Contact Us</span>
+        </div>
+        <div class="contact-grid">
+            <div class="contact-info">
+                <div class="contact-detail">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <a href="mailto:eshekas2019@gmail.com">eshekas2019@gmail.com</a><br>
+                        <a href="mailto:eshetu.kasseye@aastustudent.edu.et">eshetu.kasseye@aastustudent.edu.et</a>
+                    </div>
+                </div>
+                <div class="contact-detail">
+                    <i class="fas fa-phone-alt"></i>
+                    <div>
+                        <a href="tel:+251924422250">+251 924 422 250</a> | 
+                        <a href="tel:+251913848763">+251 913 848 763</a>
+                    </div>
+                </div>
+                <div class="contact-detail">
+                    <i class="fab fa-telegram"></i>
+                    <a href="https://t.me/tahuf" target="_blank">@tahuf (Telegram)</a>
+                </div>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/eshetu21/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BKXXO7v90QCuflC2RDv3pMA%3D%3D" target="_blank" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://web.facebook.com/professional_dashboard/" target="_blank" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://t.me/tahuf" target="_blank" class="social-icon"><i class="fab fa-telegram"></i></a>
+                </div>
+            </div>
+            <div class="address-box">
+                <i class="fas fa-map-pin"></i> <strong>Address</strong><br>
+                Addis Ababa, Ethiopia 🇪🇹<br>
+                <span style="font-size: 0.85rem; color:#9b6a48;">📍 Bole, near Meskel Square – open for pickup & delivery</span>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <p>© 2025 ashu shopping.com — celebrating habesha heritage. እንኳን ደህና መጡ!</p>
+    <p style="margin-top: 6px;">📦 Free shipping in Addis Ababa on orders over 1500 ETB | handmade with ❤️</p>
+</footer>
+
+<!-- CART DRAWER -->
+<div class="cart-overlay" id="cartOverlay"></div>
+<div class="cart-drawer" id="cartDrawer">
+    <div class="cart-header">
+        <span><i class="fas fa-shopping-cart"></i> your cart</span>
+        <button class="close-cart" id="closeCartBtn">&times;</button>
+    </div>
+    <div class="cart-items-container" id="cartItemsContainer">
+        <div class="empty-cart-msg">🛒 cart is empty, add habesha wear</div>
+    </div>
+    <div class="cart-footer" id="cartFooter">
+        <div class="cart-total">
+            <span>Total (ETB)</span>
+            <span id="cartTotalPrice">0.00 Br</span>
+        </div>
+        <button class="clear-cart-btn" id="clearCartBtn"><i class="fas fa-trash-alt"></i> clear cart</button>
+        <button class="checkout-btn" id="checkoutBtn"><i class="fas fa-credit-card"></i> proceed to checkout</button>
+    </div>
+</div>
+
+<script>
+    // ---------- HABESHA WEAR PRODUCTS ----------
+    const products = [
+        { id: 1, name: "Habesha Kemis - White Tibeb", price: 1850, image: "https://picsum.photos/id/104/300/200" },
+        { id: 2, name: "Netela (Traditional Scarf)", price: 890, image: "https://picsum.photos/id/30/300/200" },
+        { id: 3, name: "Gabbi (Wool Shawl)", price: 1250, image: "https://picsum.photos/id/94/300/200" },
+        { id: 4, name: "Men's Traditional Suit", price: 2100, image: "https://picsum.photos/id/77/300/200" },
+        { id: 5, name: "Habesha Wedding Dress", price: 3950, image: "https://picsum.photos/id/29/300/200" },
+        { id: 6, name: "Ethiopian Cross Necklace", price: 550, image: "https://picsum.photos/id/108/300/200" },
+        { id: 7, name: "Kidist Mariam Embroidery", price: 980, image: "https://picsum.photos/id/116/300/200" },
+        { id: 8, name: "Cotton Habesha Shirt", price: 1490, image: "https://picsum.photos/id/42/300/200" }
+    ];
+
+    let cart = [];
+
+    // DOM elements
+    const productGrid = document.getElementById('productGrid');
+    const cartCountBadge = document.getElementById('cartCountBadge');
+    const cartItemsContainer = document.getElementById('cartItemsContainer');
+    const cartTotalSpan = document.getElementById('cartTotalPrice');
+    const cartOverlay = document.getElementById('cartOverlay');
+    const cartDrawer = document.getElementById('cartDrawer');
+    const openCartBtn = document.getElementById('cartIconBtn');
+    const closeCartBtn = document.getElementById('closeCartBtn');
+    const clearCartBtn = document.getElementById('clearCartBtn');
+    const checkoutBtn = document.getElementById('checkoutBtn');
+
+    // Helper: save to localStorage
+    function saveCart() {
+        localStorage.setItem('ashu_habesha_cart', JSON.stringify(cart));
+    }
+
+    function loadCart() {
+        const stored = localStorage.getItem('ashu_habesha_cart');
+        if (stored) {
+            try {
+                cart = JSON.parse(stored);
+                if (!Array.isArray(cart)) cart = [];
+                cart = cart.filter(item => item.id && item.quantity > 0);
+            } catch(e) { cart = []; }
+        } else { cart = []; }
+    }
+
+    function updateBadge() {
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        cartCountBadge.innerText = totalItems;
+    }
+
+    function getProductById(id) {
+        return products.find(p => p.id === id);
+    }
+
+    function renderCartDrawer() {
+        if (cart.length === 0) {
+            cartItemsContainer.innerHTML = `<div class="empty-cart-msg"><i class="fas fa-store"></i> your cart is empty<br>✨ add beautiful habesha pieces ✨</div>`;
+            cartTotalSpan.innerText = "0.00 Br";
+            return;
+        }
+
+        let itemsHtml = '';
+        let total = 0;
+        cart.forEach(cartItem => {
+            const product = getProductById(cartItem.id);
+            if (!product) return;
+            const itemTotal = product.price * cartItem.quantity;
+            total += itemTotal;
+            itemsHtml += `
+                <div class="cart-item" data-product-id="${cartItem.id}">
+                    <img class="cart-item-img" src="${product.image}" alt="${product.name}">
+                    <div class="cart-item-details">
+                        <div class="cart-item-name">${product.name}</div>
+                        <div class="cart-item-price">${product.price} Br</div>
+                        <div class="cart-item-actions">
+                            <button class="qty-btn cart-minus" data-id="${cartItem.id}">−</button>
+                            <span class="cart-item-qty">${cartItem.quantity}</span>
+                            <button class="qty-btn cart-plus" data-id="${cartItem.id}">+</button>
+                            <button class="remove-item" data-id="${cartItem.id}"><i class="fas fa-trash-can"></i></button>
+                        </div>
+                    </div>
+                    <div style="font-weight:600;">${itemTotal} Br</div>
+                </div>
+            `;
+        });
+        cartItemsContainer.innerHTML = itemsHtml;
+        cartTotalSpan.innerText = `${total.toFixed(2)} Br`;
+    }
+
+    function refreshCartUI() {
+        updateBadge();
+        renderCartDrawer();
+        saveCart();
+    }
+
+    function addToCart(productId, qty = 1) {
+        const existing = cart.find(item => item.id === productId);
+        if (existing) {
+            existing.quantity += qty;
+        } else {
+            cart.push({ id: productId, quantity: qty });
+        }
+        refreshCartUI();
+        showFloatingMessage("✓ added to cart");
+    }
+
+    function updateQuantity(productId, newQty) {
+        if (newQty <= 0) {
+            cart = cart.filter(item => item.id !== productId);
+        } else {
+            const item = cart.find(item => item.id === productId);
+            if (item) item.quantity = newQty;
+        }
+        refreshCartUI();
+    }
+
+    function removeItem(productId) {
+        cart = cart.filter(item => item.id !== productId);
+        refreshCartUI();
+        showFloatingMessage("removed from cart");
+    }
+
+    function clearCart() {
+        if (cart.length) {
+            cart = [];
+            refreshCartUI();
+            showFloatingMessage("cart cleared");
+        } else showFloatingMessage("cart empty");
+    }
+
+    function checkout() {
+        if (cart.length === 0) {
+            showFloatingMessage("your cart is empty, please add items!");
+            return;
+        }
+        const total = cart.reduce((sum, item) => {
+            const prod = getProductById(item.id);
+            return sum + (prod ? prod.price * item.quantity : 0);
+        }, 0);
+        alert(`🎉 እንኳን ደስ አለዎት! 🎉\nThank you for shopping at Ashu Shopping.com\n\nTotal: ${total.toFixed(2)} Br\nWe will contact you soon via phone/telegram.\nበእንኳን ደስታ ገዙ!`);
+        cart = [];
+        refreshCartUI();
+        closeCartDrawer();
+        showFloatingMessage("order placed! we'll reach out ❤️");
+    }
+
+    function showFloatingMessage(msg) {
+        let old = document.querySelector('.ashu-notif');
+        if(old) old.remove();
+        const div = document.createElement('div');
+        div.className = 'ashu-notif';
+        div.innerText = msg;
+        div.style.position = 'fixed';
+        div.style.bottom = '20px';
+        div.style.left = '50%';
+        div.style.transform = 'translateX(-50%)';
+        div.style.backgroundColor = '#5d3a24';
+        div.style.color = 'white';
+        div.style.padding = '10px 22px';
+        div.style.borderRadius = '60px';
+        div.style.fontSize = '0.85rem';
+        div.style.zIndex = '999';
+        div.style.boxShadow = '0 6px 14px rgba(0,0,0,0.2)';
+        document.body.appendChild(div);
+        setTimeout(() => div.remove(), 1800);
+    }
+
+    // drawer
+    function openCartDrawer() {
+        cartOverlay.classList.add('open');
+        cartDrawer.classList.add('open');
+        renderCartDrawer();
+    }
+    function closeCartDrawer() {
+        cartOverlay.classList.remove('open');
+        cartDrawer.classList.remove('open');
+    }
+
+    // product grid
+    function renderProducts() {
+        productGrid.innerHTML = '';
+        products.forEach(product => {
+            const card = document.createElement('div');
+            card.className = 'product-card';
+            card.innerHTML = `
+                <img class="product-img" src="${product.image}" alt="${product.name}" loading="lazy">
+                <div class="product-info">
+                    <div class="product-name">${product.name}</div>
+                    <div class="product-price">${product.price.toFixed(2)} Br</div>
+                    <button class="add-btn" data-id="${product.id}"><i class="fas fa-cart-plus"></i> add to cart</button>
+                </div>
+            `;
+            productGrid.appendChild(card);
+        });
+        document.querySelectorAll('.add-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const id = parseInt(btn.getAttribute('data-id'));
+                addToCart(id, 1);
+            });
+        });
+    }
+
+    // Event delegation for cart actions
+    function setupCartDelegation() {
+        cartItemsContainer.addEventListener('click', (e) => {
+            const target = e.target.closest('.qty-btn, .remove-item');
+            if (!target) return;
+            const idAttr = target.getAttribute('data-id');
+            if (!idAttr) return;
+            const productId = parseInt(idAttr);
+            if (target.classList.contains('cart-plus')) {
+                const item = cart.find(i => i.id === productId);
+                if (item) updateQuantity(productId, item.quantity + 1);
+            } else if (target.classList.contains('cart-minus')) {
+                const item = cart.find(i => i.id === productId);
+                if (item) updateQuantity(productId, item.quantity - 1);
+            } else if (target.classList.contains('remove-item') || target.closest('.remove-item')) {
+                removeItem(productId);
+            }
+        });
+    }
+
+    function bindUI() {
+        openCartBtn.addEventListener('click', openCartDrawer);
+        closeCartBtn.addEventListener('click', closeCartDrawer);
+        cartOverlay.addEventListener('click', closeCartDrawer);
+        clearCartBtn.addEventListener('click', clearCart);
+        checkoutBtn.addEventListener('click', checkout);
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && cartDrawer.classList.contains('open')) closeCartDrawer();
+        });
+    }
+
+    function init() {
+        loadCart();
+        renderProducts();
+        refreshCartUI();
+        bindUI();
+        setupCartDelegation();
+    }
+
+    init();
+</script>
+</body>
+</html>
