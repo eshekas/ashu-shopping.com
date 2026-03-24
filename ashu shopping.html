@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Ashu Shopping · Habesha Wear Collection</title>
+    <title>Ashu Shopping · Habesha Wear | Telebirr & CBE</title>
     <!-- Google Fonts & Font Awesome -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -227,7 +227,7 @@
             background: #c76e2e;
         }
 
-        /* contact section */
+        /* contact & payment section */
         .contact-section {
             background: #ffffff;
             border-radius: 2rem;
@@ -324,7 +324,62 @@
             margin-right: 10px;
         }
 
-        /* cart drawer (unchanged but restyled) */
+        /* Payment methods */
+        .payment-methods {
+            margin-top: 2rem;
+            background: #fef9f3;
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            border: 1px solid #f0e0d2;
+        }
+
+        .payment-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #4f321d;
+        }
+
+        .payment-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 0.8rem;
+        }
+
+        .payment-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            border: 1px solid #f0e2d6;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .payment-card i {
+            font-size: 2rem;
+            color: #c76e2e;
+        }
+
+        .payment-card .details {
+            font-weight: 500;
+        }
+
+        .payment-card .number {
+            font-weight: 700;
+            font-size: 1rem;
+            color: #2c2418;
+            letter-spacing: 0.3px;
+        }
+
+        /* cart drawer (unchanged) */
         .cart-overlay {
             position: fixed;
             top: 0;
@@ -474,6 +529,9 @@
             .contact-grid {
                 flex-direction: column;
             }
+            .payment-row {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
@@ -483,7 +541,7 @@
     <div class="logo-area">
         <span class="logo">ashu shopping</span>
         <span class="logo-dot">.com</span>
-        <span class="tagline">🇪🇹 habesha wear & tradition</span>
+        <span class="tagline">🇪🇹 habesha wear · telebirr & cbe</span>
     </div>
     <div class="cart-icon" id="cartIconBtn">
         <i class="fas fa-shopping-bag"></i>
@@ -508,11 +566,11 @@
     </div>
     <div class="product-grid" id="productGrid"></div>
 
-    <!-- CONTACT SECTION (Email, phone, social, address) -->
+    <!-- CONTACT SECTION + PAYMENT METHODS (Telebirr & CBE) -->
     <div class="contact-section" id="contact">
         <div class="contact-title">
             <i class="fas fa-address-card"></i>
-            <span>ግንኙነት | Contact Us</span>
+            <span>ግንኙነት & ክፍያ | Contact & Payment</span>
         </div>
         <div class="contact-grid">
             <div class="contact-info">
@@ -546,12 +604,39 @@
                 <span style="font-size: 0.85rem; color:#9b6a48;">📍 Bole, near Meskel Square – open for pickup & delivery</span>
             </div>
         </div>
+
+        <!-- PAYMENT METHODS SECTION -->
+        <div class="payment-methods">
+            <div class="payment-title">
+                <i class="fas fa-credit-card"></i>
+                <span>ክፍያ ማድረጊያ መንገዶች | Payment Methods</span>
+            </div>
+            <div class="payment-row">
+                <div class="payment-card">
+                    <i class="fas fa-mobile-alt"></i>
+                    <div class="details">
+                        <div>📱 Telebirr</div>
+                        <div class="number">+251 924 422 250</div>
+                        <small style="color:#7c5d42;">በቴሌብር ይክፈሉ</small>
+                    </div>
+                </div>
+                <div class="payment-card">
+                    <i class="fas fa-university"></i>
+                    <div class="details">
+                        <div>🏦 CBE (Commercial Bank of Ethiopia)</div>
+                        <div class="number">1000091760154</div>
+                        <small style="color:#7c5d42;">account holder: Eshetu Kasseye</small>
+                    </div>
+                </div>
+            </div>
+            <p style="margin-top: 1rem; font-size: 0.85rem; color: #a65228;"><i class="fas fa-info-circle"></i> After placing your order, please transfer the exact total to Telebirr or CBE and send us the screenshot via Telegram or phone. We'll confirm and deliver.</p>
+        </div>
     </div>
 </main>
 
 <footer>
     <p>© 2025 ashu shopping.com — celebrating habesha heritage. እንኳን ደህና መጡ!</p>
-    <p style="margin-top: 6px;">📦 Free shipping in Addis Ababa on orders over 1500 ETB | handmade with ❤️</p>
+    <p style="margin-top: 6px;">📦 Free shipping in Addis Ababa on orders over 1500 ETB | Pay with Telebirr or CBE</p>
 </footer>
 
 <!-- CART DRAWER -->
@@ -711,11 +796,11 @@
             const prod = getProductById(item.id);
             return sum + (prod ? prod.price * item.quantity : 0);
         }, 0);
-        alert(`🎉 እንኳን ደስ አለዎት! 🎉\nThank you for shopping at Ashu Shopping.com\n\nTotal: ${total.toFixed(2)} Br\nWe will contact you soon via phone/telegram.\nበእንኳን ደስታ ገዙ!`);
+        alert(`🎉 እንኳን ደስ አለዎት! 🎉\nThank you for shopping at Ashu Shopping.com\n\nTotal: ${total.toFixed(2)} Br\n\n📲 Payment Options:\n• Telebirr: +251924422250\n• CBE: 1000091760154\n\nPlease send the exact amount using Telebirr or CBE and share the screenshot via Telegram (@tahuf) or call +251924422250. We'll confirm and deliver. 🇪🇹`);
         cart = [];
         refreshCartUI();
         closeCartDrawer();
-        showFloatingMessage("order placed! we'll reach out ❤️");
+        showFloatingMessage("order placed! follow payment instructions ❤️");
     }
 
     function showFloatingMessage(msg) {
